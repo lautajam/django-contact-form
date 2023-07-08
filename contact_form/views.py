@@ -4,8 +4,6 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib import messages
 
-# Create your views here.
-
 # Render the contact page
 def contact_form(request):
     return render(request, 'contact_form.html')
@@ -26,15 +24,15 @@ def contact(request):
 
     if request.method == "POST":
         name = request.POST['name']
-        email = request.POST['email']
+        email_data = request.POST['email']
         subject = request.POST['subject']
         message = request.POST['message']
 
-        # print(name, email, subject, message)
+        print(name, email_data, subject, message)
 
         template = render_to_string('email_template.html', {
             'name': name,
-            'email': email,
+            'email_data': email_data,
             'subject': subject,
             'message': message
         })
@@ -49,6 +47,14 @@ def contact(request):
         email.fail_silently = False
         email.send()
 
-        messages.success(request, 'The mail has been sent.')
+        # Adds the success message with each line of the template
+        success_message = render_to_string('alert_success.html', {
+            'name': name,
+            'email_data': email_data,
+            'subject': subject,
+            'message': message
+        })
+        
+        messages.success(request, success_message)
 
         return redirect('contact_form')
