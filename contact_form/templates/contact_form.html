@@ -7,8 +7,17 @@
 </head>
 <body>
     <h1>Contact Form</h1>
-    <form action="POST" action="{% url 'email_template' %}">
-        {& csrf_token &}
+
+    {% if messages %}
+        {% for message in messages %}
+            <h3> {{ message }} </h3>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="POST" action="{% url 'contact' %}">
+        
+        {% csrf_token %}
+
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
         <label for="email">Email:</label>
