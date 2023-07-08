@@ -14,7 +14,3 @@ The contact form consists of the following fields:
 - Message: The body of the message to be sent.
 
 Users must complete all required fields before submitting the form. When the "Send" button is clicked, the message will be emailed to the recipient specified in the project settings.
-
-## Installation
-
-To run this project locally, follow these steps:
