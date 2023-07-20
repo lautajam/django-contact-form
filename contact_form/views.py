@@ -31,11 +31,13 @@ def contact(request):
 
     if request.method == "POST":
         captcha = CaptchaForm(request.POST)
+
+        name = request.POST['name']
+        email_data = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
         if captcha.is_valid():
-            name = request.POST['name']
-            email_data = request.POST['email']
-            subject = request.POST['subject']
-            message = request.POST['message']
 
             print(name, email_data, subject, message)
 
@@ -67,8 +69,12 @@ def contact(request):
             messages.success(request, success_message)
 
             return redirect('contact_form')
-        else:
+        else: 
             context = {
+                'name': name,
+                'email_data': email_data,
+                'subject': subject,
+                'message': message,
                 'captcha': captcha
             }
             return render(request, 'contact_form.html', context)
