@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'contact_form',
 ]
+
+# Setings about captcha
+RECAPTCHA_PUBLIC_KEY = '6Lem1T4nAAAAALwfm8BDHd5T_m-Ap4y1zFsr7e95'
+RECAPTCHA_PRIVATE_KEY = '6Lem1T4nAAAAANn_USOWh_4yo9CV1n8DkGg9fXkV'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

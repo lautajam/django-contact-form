@@ -28,6 +28,7 @@
                 {% endif %}
 
               </div>
+
               <div class="col-12">
                 <form method="POST" action="{% url 'contact' %}">
                   {% csrf_token %}
@@ -47,10 +48,17 @@
                     <label for="message" class="form-label">Message:</label>
                     <textarea name="message" class="form-control" style="height: 200px;" id="message" required></textarea>
                   </div>
+                  <div class="mb-3">
+                    {{ captcha }}
+                  </div>
+                  {% for error in captcha.errors %}
+                      <p> {{ error }} </p>
+                  {% endfor %}
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <input type="reset" class="btn btn-primary">
                 </form>
               </div>
+
             </div>
           </div>
         </div>
